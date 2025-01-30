@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Pobranie kodu
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Najnowsza wersja checkout
 
       - name: Instalacja Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # Najnowsza wersja setup-node
         with:
           node-version: 18  # Możesz sprawdzić, jaka wersja działa w repo
 
@@ -29,7 +29,7 @@ jobs:
         run: npm run dist  # Może być "npm run build" – sprawdź w package.json
 
       - name: Przechowywanie artefaktów
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Używamy nowej wersji v4
         with:
           name: testownik-windows
           path: dist/*.exe  # Sprawdź, gdzie Electron generuje plik .exe
