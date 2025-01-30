@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # To pozwoli na ręczne uruchomienie workflow
+  workflow_dispatch:  # Pozwala uruchomić workflow ręcznie
 
 jobs:
   build:
-    runs-on: windows-latest  # Wybór systemu operacyjnego
+    runs-on: windows-latest  # Używamy systemu Windows
     
     steps:
     - name: Checkout code
@@ -20,13 +20,13 @@ jobs:
         node-version: '18.x'
     
     - name: Install dependencies
-      run: npm ci  # Zainstaluje zależności z package-lock.json
+      run: npm ci  # Zainstalowanie zależności z package-lock.json
     
     - name: Build the application
       run: npm run build  # Komenda do budowy aplikacji
     
     - name: Upload the build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2  # Zaktualizowana wersja akcji
       with:
         name: Testownik-Build
-        path: build/  # Ścieżka do folderu z zbudowanymi plikami (np. .exe)
+        path: build/  # Ścieżka do folderu z zbudowanymi plikami
