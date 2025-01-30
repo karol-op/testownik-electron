@@ -1,4 +1,4 @@
-name: Build Electron App
+name: Build Testownik
 
 on:
   push:
@@ -7,29 +7,28 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:  # Pozwala odpalać build ręcznie
 
 jobs:
   build:
-    runs-on: windows-latest  # Budujemy na Windowsie, żeby dostać .exe
+    runs-on: windows-latest
 
     steps:
-      - name: Pobranie kodu
-        uses: actions/checkout@v4  # Najnowsza wersja checkout
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Instalacja Node.js
-        uses: actions/setup-node@v4  # Najnowsza wersja setup-node
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18  # Możesz sprawdzić, jaka wersja działa w repo
+          node-version: 16
 
-      - name: Instalacja zależności
+      - name: Install dependencies
         run: npm install
 
-      - name: Budowanie aplikacji
-        run: npm run dist  # Może być "npm run build" – sprawdź w package.json
+      - name: Build the app
+        run: npm run build
 
-      - name: Przechowywanie artefaktów
-        uses: actions/upload-artifact@v4  # Używamy nowej wersji v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: testownik-windows
-          path: dist/*.exe  # Sprawdź, gdzie Electron generuje plik .exe
+          name: testownik-exe
+          path: build/
