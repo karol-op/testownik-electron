@@ -9,7 +9,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest  # Używamy systemu Windows
-    
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
