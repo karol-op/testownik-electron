@@ -16,7 +16,8 @@
     "lint:fix": "eslint --ext .js,.vue --fix src test",
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js",
-    "postinstall": "npm run lint:fix"
+    "postinstall": "echo \"Skipping lint:fix\""
+
   },
   "build": {
     "productName": "Testownik",
