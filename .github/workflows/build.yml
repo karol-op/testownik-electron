@@ -11,22 +11,22 @@ jobs:
     runs-on: windows-latest  # Używamy systemu Windows
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-    
-    - name: Install dependencies
-      run: npm ci  # Zainstalowanie zależności z package-lock.json
-    
-    - name: Build the application
-      run: npm run build  # Komenda do budowy aplikacji
-    
-    - name: Upload the build artifact
-      uses: actions/upload-artifact@v4  # Zaktualizowana wersja v4
-      with:
-        name: Testownik-Build
-        path: build/  # Ścieżka do folderu z zbudowanymi plikami
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps  # Instalacja zależności z pominięciem rygorystycznej weryfikacji peer dependencies
+      
+      - name: Build the application
+        run: npm run build  # Komenda do budowy aplikacji
+      
+      - name: Upload the build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Testownik-Build
+          path: build/  # Ścieżka do folderu z zbudowanymi plikami
